@@ -9,5 +9,7 @@ namespace API.Core.Interfaces
     {
         Task<Product> GetProductByIdAsync(int id);
         Task<ReadOnlyList<Product>> GetProductAsync();
+        Task<ReadOnlyList<ProductBrand>> GetProductBrandByIdAsync();
+        Task<ReadOnlyList<ProductType>> GetProductTypeByIdAsync();
     }
 }

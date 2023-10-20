@@ -4,6 +4,7 @@ using API.Infrastructure.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Infrastructure.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20231016093626_AddDescriptionColumn")]
+    partial class AddDescriptionColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +45,7 @@ namespace API.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("ProductBrandId")
@@ -74,7 +77,7 @@ namespace API.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductsBrands");
+                    b.ToTable("ProductBrand");
                 });
 
             modelBuilder.Entity("API.Core.DbModels.ProductType", b =>
@@ -91,7 +94,7 @@ namespace API.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductsTypes");
+                    b.ToTable("ProductType");
                 });
 
             modelBuilder.Entity("API.Core.DbModels.Product", b =>

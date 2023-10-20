@@ -24,5 +24,17 @@ namespace API.Infrastructure.Implements
            var productList=await _context.Products.ToListAsync();
             return productList; 
         }
+
+        public async Task<ReadOnlyList<ProductBrand>> GetProductBrandByIdAsync()
+        {
+            var productBrandList=await _context.ProductsBrands.ToListAsync();
+            return productBrandList;
+        }
+
+        public async Task<ReadOnlyList<ProductType>> GetProductTypeByIdAsync()
+        {
+            var productTypeList=await _context.ProductsTypes.ToListAsync();
+            return productTypeList;
+        }
     }
 }
