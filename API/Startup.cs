@@ -1,5 +1,6 @@
 ﻿
 using API.Core.Interfaces;
+using API.Helpers;
 using API.Infrastructure.DataContext;
 using API.Infrastructure.Implements;
 using Microsoft.AspNetCore.Builder;
@@ -23,6 +24,7 @@ namespace API
             services.AddControllers();
             services.AddDbContext<StoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));  
             services.AddSwaggerGen(c =>
             {
