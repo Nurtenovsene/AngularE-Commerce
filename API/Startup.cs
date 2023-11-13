@@ -1,5 +1,6 @@
 ﻿
 using API.Core.Interfaces;
+using API.Extentions;
 using API.Helpers;
 using API.Infrastructure.DataContext;
 using API.Infrastructure.Implements;
@@ -24,9 +25,8 @@ namespace API
         {
             services.AddControllers();
             services.AddDbContext<StoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddAutoMapper(typeof(MappingProfiles));
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddApplicationService();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
