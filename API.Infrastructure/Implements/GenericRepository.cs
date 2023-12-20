@@ -17,7 +17,7 @@ namespace API.Infrastructure.Implements
         private readonly StoreContext _context;
         public GenericRepository(StoreContext context)
         {
-                _context = context;
+            _context = context;
         }
         public async Task<T> GetById(int Id)
         {
@@ -42,6 +42,11 @@ namespace API.Infrastructure.Implements
         private IQueryable<T> ApplySpecificiation(ISpecification<T> spec)
         {
             return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);
+        }
+
+        public async Task<int> CountAsync(ISpecification<T> spec)
+        {
+            return await ApplySpecificiation(spec).CountAsync();
         }
     }
 }
